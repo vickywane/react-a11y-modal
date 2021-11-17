@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useContext } from 'react'
+import Modal from './components/modal';
+import AppContext, { AppProvider } from './state/app-context'
+
+import "./styles/modal-style.css"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <Home />
+    </AppProvider>
   );
+}
+
+const Home = () => {
+  const { isModalOpen, handleModalVisibility } = useContext(AppContext)
+
+  return (
+    <div className="App" >
+
+      <div>
+        <h1> Sign Up To Recieve Our Next Updates </h1>
+
+        <button className="custom-btn" onClick={() => handleModalVisibility(!isModalOpen)} >
+          Sign Up Now
+        </button>
+      </div>
+
+      <Modal />
+    </div>
+  )
 }
 
 export default App;
