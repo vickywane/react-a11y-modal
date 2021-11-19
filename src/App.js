@@ -17,9 +17,8 @@ const Home = () => {
   const { isModalOpen, handleModalVisibility } = useContext(AppContext)
 
   return (
-    <div className="App" >
-
-      <div>
+    <div className="App">
+      <div style={{ zIndex: 1 }}>
         <h1> Sign Up To Recieve Our Next Updates </h1>
 
         <button className="custom-btn" onClick={() => handleModalVisibility(!isModalOpen)} >
