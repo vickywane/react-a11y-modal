@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 
 export const initialState = {
-    isModalOpen: false,
+    isModalOpen: true,
     email: "",
     name: "",
     hasSubmittedDetails: false,

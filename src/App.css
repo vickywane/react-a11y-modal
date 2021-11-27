@@ -2,23 +2,111 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* HOME CONTENT */
+
+.home-container {
+  z-index: 1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* MODAL BODY STYLES  =====================> */
+
+.modal {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  width: 30rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 3px grey;
+  z-index: 3;
+  /* border: 0 */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 2;
+}
+
+.flex-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: .5rem 1rem;
+}
+
+.modal-body {
+  background: #f4f6f8;
+  padding: 0 1rem;
+}
+
+.close-button {
+  background: transparent;
+  border: 0;
+  font-size: 1.2rem;
+}
+
+.close-button:hover {
+  cursor: pointer;
+}
+
+h5 {
+  margin: 0 auto;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.input-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: .5rem 0;
+}
+
+p {
+  font-size: .8rem;
+  padding: 0;
+  margin: .4rem 0;
+}
+
+.text-field {
+  height: 20px;
+  border: 0;
+  padding: .5rem .5rem;
+  border-radius: 3px;
+  margin: .5rem 0;
+}
+
+label { 
+  font-size: .85rem;
+}
+
+.custom-btn {
+  height: 35px;
+  background: grey;
+  border: 1px solid grey;
+  padding: .5rem 2rem;
+  font-size: .9rem;
+  margin: 0 .5rem;
+  border-radius: 3px;
+  color: white;
+  box-shadow: 0 .5px 1.5px grey;
+}
+
+.custom-btn:hover { 
+  cursor: pointer;
 }
 

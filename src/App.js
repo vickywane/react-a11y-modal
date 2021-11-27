@@ -2,8 +2,7 @@ import './App.css';
 import React, { useContext } from 'react'
 import Modal from './components/modal';
 import AppContext, { AppProvider } from './state/app-context'
-
-import "./styles/modal-style.css"
+import { useEffect } from 'react/cjs/react.development';
 
 function App() {
   return (
@@ -16,10 +15,14 @@ function App() {
 const Home = () => {
   const { isModalOpen, handleModalVisibility } = useContext(AppContext)
 
+  useEffect(() => {
+    handleModalVisibility(true)
+  }, [])
+
   return (
     <div className="App">
-      <div style={{ zIndex: 1 }}>
-        <h1> Sign Up To Recieve Our Next Updates </h1>
+      <div className="home-container" >
+        <h1> Hello React </h1>
 
         <button className="custom-btn" onClick={() => handleModalVisibility(!isModalOpen)} >
           Sign Up Now

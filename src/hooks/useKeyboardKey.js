@@ -23,27 +23,25 @@ const useKeyboardKey = ({ callback, keyMatch }) => {
 }
 
 // designed for only tab key
-export const useTrapTabKey = ({ focusables, activeElement }) => {
+export const useTrapTabKey = ({ focusables }) => {
     React.useEffect(() => {
-        let currentElement = activeElement
+        let currentElement = document.activeElement
 
         const eventListener = event => {
 
-            // setTimeout(() => {
-                if (currentElement) {
-                    if (event.code === "Tab" || event.key === "Tab") {
-                        currentElement = document.activeElement
-                        const arr = Object.entries(focusables)
-                        const lastElem = arr[arr.length - 1]
+            if (currentElement) {
+                if (event.code === "Tab" || event.key === "Tab") {
+                    currentElement = document.activeElement
+                    const arr = Object.entries(focusables)
+                    const lastElem = arr[arr.length - 1]
 
-                        if (lastElem[1].isSameNode(currentElement)) {
-                            arr[0][1].focus()
+                    if (lastElem[1].isSameNode(currentElement)) {
+                        arr[0][1].focus()
 
-                            event.preventDefault()
-                        }
+                        event.preventDefault()
                     }
-                };
-            // }, 500)
+                }
+            };
         }
 
         document.addEventListener('keydown', eventListener);
@@ -61,15 +59,3 @@ export const ESCAPE_KEY = {
     keyName: 'Esc',
     keyCode: 27,
 };
-
-export const ENTER_KEY = {
-    key: 'Enter',
-    keyName: 'Enter',
-    keyCode: 13,
-};
-
-export const TAB_KEY = {
-    key: "Tab",
-    keyName: "Tab",
-    keyCode: 9
-}

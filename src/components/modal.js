@@ -1,8 +1,6 @@
 import React, { useEffect, useContext, useState, useRef } from 'react'
-import "../styles/modal-style.css"
 import AppContext from '../state/app-context'
-import useKeyboardKey, { ESCAPE_KEY, ENTER_KEY, useTrapTabKey } from '../hooks/useKeyboardKey'
-
+import useKeyboardKey, { ESCAPE_KEY, useTrapTabKey } from '../hooks/useKeyboardKey'
 
 const Modal = () => {
     const { isModalOpen, handleModalVisibility, handleUserSubscriptionData } = useContext(AppContext)
@@ -10,7 +8,6 @@ const Modal = () => {
     const [name, setName] = useState("")
     const [allFocusableElements, setFocusableElements] = useState(null)
     const modalContainerRef = useRef(null)
-    const [activeElement , setActiveElement ] = useState(null)
 
     useEffect(() => {
         if (modalContainerRef.current && isModalOpen) {
@@ -20,38 +17,30 @@ const Modal = () => {
                 focusable
             )
             inputs[0].focus()
-            setActiveElement(inputs[0])
         }
 
     }, [modalContainerRef, isModalOpen])
 
-    useKeyboardKey({ callback: () => alert("SUBMIT USER DETAILS"), keyMatch: ENTER_KEY })
-    useKeyboardKey({ callback: () => handleModalVisibility(false), keyMatch: ESCAPE_KEY })
-    useTrapTabKey({ focusables: allFocusableElements, activeElement })
+    useKeyboardKey({ callback: () => modalContainerRef.current.close(), keyMatch: ESCAPE_KEY })
+    useTrapTabKey({ focusables: allFocusableElements })
 
     return (
-        <div
-            className="modal" style={{
-                display: !isModalOpen ? 'none' : 'flex'
-            }}
-        >
-            <div
+        <div className="modal">
+            <dialog
+                open
                 className="modal-container"
-                role="dialog"
-                aria-labelledby="Subscribe dialog"
-                aria-describedby="A dialog to subscribe for more news updates"
+                aria-labelledby="modal-headline"
+                aria-describedby="modal-info"
                 ref={modalContainerRef}
             >
                 <div className="flex-row-container" style={{ background: "white" }} >
                     <div className="modal-title" >
-                        <h5 style={{ textAlign: "left" }} >Subscribe</h5>
-                        <p>Get our latest updates in your inbox</p>
+                        <h5 id="modal-headline" style={{ textAlign: "left" }} >Subscribe</h5>
+                        <p id="modal-info" >Get our latest updates in your inbox</p>
                     </div>
 
                     <div style={{ display: "flex", alignItems: "center" }} >
-                        <button type="button" onClick={() => {
-                            handleModalVisibility(false)
-                        }} className="close-button">x</button>
+                        <button type="button" aria-keyshortcuts="Escape" onClick={() => modalContainerRef.current.close()} className="close-button">x</button>
                     </div>
                 </div>
 
@@ -101,7 +90,7 @@ const Modal = () => {
                         <br />
                     </form>
                 </div>
-            </div>
+            </dialog>
 
             <div className="modal-overlay" />
         </div>
